@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['available', 'sold', 'rented'])->default('available');
             $table->integer('view_count')->default(0);
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

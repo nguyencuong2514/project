@@ -17,7 +17,7 @@
                         <p class="card-text text-secondary mt-2">{{ \Str::limit($a->content, 100) }}</p>
                         <div class="mt-auto d-flex justify-content-between align-items-center">
                             <span class="text-muted small">{{ $a->created_at->format('d/m/Y') }}</span>
-                            <a href="{{ route('client.show', $a->id) }}" class="text-danger text-decoration-none fw-semibold">Xem thêm</a>
+                            <a href="{{ route('client.article.show', $a->id) }}" class="text-danger text-decoration-none fw-semibold">Xem thêm</a>
                         </div>
                     </div>
                 </div>

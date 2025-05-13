@@ -24,7 +24,7 @@
                 <a href="#" class="text-decoration-none">Nhà đất bán</a>
                 <a href="#" class="text-decoration-none">Nhà đất cho thuê</a>
                 <a href="#" class="text-decoration-none">Dự án</a>
-                <a href="#" class="text-decoration-none">Tin tức</a>
+                <a href="{{ route('client.article.index') }}" class="text-decoration-none">Tin tức</a>
                 <a href="#" class="text-decoration-none">Wiki BĐS</a>
             </nav>
 
@@ -41,7 +41,7 @@
                     <a href="{{ route('login') }}" class="auth-link text-decoration-none">Đăng nhập</a>
                     <a href="{{ route('register') }}" class="auth-link text-decoration-none">Đăng ký</a>
                 @endauth
-                <a href="{{ route('client.create') }}" class="btn btn-danger btn-sm">Đăng tin</a>
+                <a href="{{ route('client.article.create') }}" class="btn btn-danger btn-sm">Đăng tin</a>
             </div>
         </div>
     </header>

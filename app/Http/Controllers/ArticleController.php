@@ -8,10 +8,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
+    // Hiển thị danh sách bài viết
+    public function index()
+    {
+        // Lấy danh sách bài viết từ database
+        $articles = Article::paginate(5);
+        return view('client.article.index', compact('articles'));
+    }
     // Form đăng tin
     public function create()
     {
-        return view('client.create');
+        return view('client.article.create');
     }
 
     // Xử lý lưu tin
@@ -37,6 +44,6 @@ class ArticleController extends Controller
         // Tạo bản ghi
         Article::create($data);
 
-        return redirect()->route('client.create')->with('success', 'Đăng tin thành công!');
+        return redirect()->route('client.article.create')->with('success', 'Đăng tin thành công!');
     }
 }

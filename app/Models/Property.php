@@ -54,4 +54,8 @@ class Property extends Model
     {
         return $this->hasMany(Contact::class);
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
