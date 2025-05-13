@@ -10,17 +10,17 @@ class ClientController extends Controller
     public function index()
     {
         // Lấy tất cả bài viết từ database
-        $client = Article::paginate(6); // Sử dụng paginate để phân trang nếu có nhiều bài viết
+        $article = Article::paginate(6); // Sử dụng paginate để phân trang nếu có nhiều bài viết
 
         // Trả về view cùng với dữ liệu bài viết
-        return view('client.index', compact('client'));
+        return view('client.index', compact('article'));
     }
 
     public function show($id)
     {
-        $client = Article::find($id);
+        $article = Article::find($id);
 
-        return view('client.show', compact('client'));
+        return view('client.show', compact('article'));
     }
 
     // public function create()

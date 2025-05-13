@@ -8,16 +8,16 @@
 
     <!-- Articles Section -->
     <div class="row g-4">
-        @foreach($client as $article)
+        @foreach($article as $a)
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="{{ Storage::url($article->image) }}" alt="Article Image" class="card-img-top" style="height: 220px; object-fit: cover;">
+                    <img src="{{ Storage::url($a->image) }}" alt="Article Image" class="card-img-top" style="height: 220px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
-                        <h2 class="card-title h5 text-dark">{{ $article->title }}</h2>
-                        <p class="card-text text-secondary mt-2">{{ \Str::limit($article->content, 100) }}</p>
+                        <h2 class="card-title h5 text-dark">{{ $a->title }}</h2>
+                        <p class="card-text text-secondary mt-2">{{ \Str::limit($a->content, 100) }}</p>
                         <div class="mt-auto d-flex justify-content-between align-items-center">
-                            <span class="text-muted small">{{ $article->created_at->format('d/m/Y') }}</span>
-                            <a href="{{ route('client.show', $article->id) }}" class="text-danger text-decoration-none fw-semibold">Xem thêm</a>
+                            <span class="text-muted small">{{ $a->created_at->format('d/m/Y') }}</span>
+                            <a href="{{ route('client.show', $a->id) }}" class="text-danger text-decoration-none fw-semibold">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
 
     <!-- Pagination Section -->
     <div class="mt-5 d-flex justify-content-center">
-        {{ $client->links() }}
+        {{ $article->links() }}
     </div>
 </div>
 @endsection

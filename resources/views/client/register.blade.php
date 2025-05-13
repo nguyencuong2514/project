@@ -100,25 +100,29 @@
                 <div class="mb-4">
                     <label class="form-label fw-semibold">Họ và tên</label>
                     <input type="text" name="name" value="{{ old('name') }}"
-                           class="form-control input-field" required>
+                           class="form-control input-field" >
                 </div>
-
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">SĐT</label>
+                    <input type="text" name="phone" value="{{ old('phone') }}"
+                           class="form-control input-field" >
+                </div>
                 <div class="mb-4">
                     <label class="form-label fw-semibold">Email</label>
                     <input type="email" name="email" value="{{ old('email') }}"
-                           class="form-control input-field" required>
+                           class="form-control input-field" >
                 </div>
 
                 <div class="mb-4">
                     <label class="form-label fw-semibold">Mật khẩu</label>
                     <input type="password" name="password"
-                           class="form-control input-field" required>
+                           class="form-control input-field" >
                 </div>
 
                 <div class="mb-4">
                     <label class="form-label fw-semibold">Nhập lại mật khẩu</label>
                     <input type="password" name="password_confirmation"
-                           class="form-control input-field" required>
+                           class="form-control input-field" >
                 </div>
 
                 <div class="text-center">
