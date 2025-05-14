@@ -67,6 +67,8 @@
             <a href="/admin/article" class="nav-link {{ request()->is('admin/article*') ? 'active' : '' }}">Quản lý bài viết</a>
             <a href="/admin/property_types" class="nav-link {{ request()->is('admin/property_types*') ? 'active' : '' }}">Quản lý loại bất động sản</a>
             <a href="/admin/property" class="nav-link {{ request()->is('admin/property*') ? 'active' : '' }}">Quản lý bất động sản</a>
+            <a href="/admin/location" class="nav-link {{ request()->is('admin/location*') ? 'active' : '' }}">Quản lý vị trí</a>
+
         </div>
 
         <div class="content">

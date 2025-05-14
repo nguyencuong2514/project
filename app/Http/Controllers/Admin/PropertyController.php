@@ -7,7 +7,8 @@ use App\Models\Location;
 use App\Models\Property;
 use App\Models\PropertyType;
 use Illuminate\Http\Request;
-use PgSql\Lob;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PropertyController extends Controller
 {
@@ -25,40 +26,28 @@ class PropertyController extends Controller
         $locations = Location::all();
         return view('admin.property.create', compact('property', 'propertyTypes', 'locations'));
     }
-
     public function store(Request $request)
     {
-        // Validate các trường dữ liệu từ bảng properties
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:properties,slug',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'area' => 'required|numeric',
-            'address' => 'nullable|string|max:255',
+            'address' => 'nullable|string',
             'property_type_id' => 'required|exists:property_types,id',
             'location_id' => 'required|exists:locations,id',
-            'status' => 'nullable|string|max:50',
-            'view_count' => 'nullable|integer',
-            'category_id' => 'required|exists:categories,id',
+            'status' => 'required|in:available,sold,rented',
+            'view_count' => 'nullable|numeric',
         ]);
-        // Đảm bảo trường slug luôn có giá trị (nếu không nhập thì tự tạo từ title)
+
         $data = $request->all();
-        if (empty($data['slug'])) {
-            $data['slug'] = \Illuminate\Support\Str::slug($data['title']);
-        }
-        // Gán user_id là id của user đang đăng nhập
-        $data['user_id'] = auth()->user()->id;
-        // Xử lý ảnh chính
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $path = public_path('/images/properties');
-            $image->move($path, $filename);
-            $data['image'] = '/images/properties/' . $filename;
-        }
-        $property = Property::create($data);
-        return redirect()->route('admin.property.index', compact('property'))->with('success', 'Tạo bất động sản thành công!');
+        $data['slug'] = $data['slug'] ?: \Str::slug($data['title']);
+        $data['user_id'] = Auth::id(); // 👈 Gán người đăng nhập
+
+        Property::create($data);
+
+        return redirect()->route('admin.property.index')->with('success', 'Thêm bất động sản thành công!');
     }
 
     public function edit($id)
@@ -71,23 +60,27 @@ class PropertyController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validate các trường dữ liệu từ bảng properties
-        $request->validate([
+        // Validate các trường dữ liệu từ bảng properties (loại bỏ user_id vì sẽ tự set)
+        $data = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'area' => 'required|numeric',
             'address' => 'nullable|string|max:255',
-            'user_id' => 'required|exists:users,id',
             'property_type_id' => 'required|exists:property_types,id',
             'location_id' => 'required|exists:locations,id',
             'status' => 'nullable|string|max:50',
             'view_count' => 'nullable|integer',
         ]);
+
+        // Thêm user_id từ người dùng hiện tại
+        $data['user_id'] = Auth::id();
+
+        // Cập nhật bất động sản
         $property = Property::findOrFail($id);
-        $property->update($request->all());
-        // ...xử lý ảnh nếu có...
+        $property->update($data);
+
         return redirect()->route('admin.property.index')->with('success', 'Cập nhật bất động sản thành công!');
     }
     public function destroy($id)
