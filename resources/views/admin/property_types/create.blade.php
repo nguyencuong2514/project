@@ -10,11 +10,11 @@
                 </div>
 
                 <div class="card-body p-4">
-                    <form method="POST" action="{{ route('admin.category.store') }}">
+                    <form method="POST" action="{{ route('admin.property_types.store') }}">
                         @csrf
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Tên danh mục</label>
+                            <label for="name" class="form-label">Tên loại bất động sản</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
 

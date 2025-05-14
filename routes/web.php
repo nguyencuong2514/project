@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\PropertyTypeController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
@@ -35,12 +37,20 @@ Route::middleware(['auth', 'auth.role:admin'])->group(function () {
         Route::post('/article/edit/{id}', [AdminArticleController::class, 'update'])->name('admin.article.update');
         Route::get('/article/delete/{id}', [AdminArticleController::class, 'delete'])->name('admin.article.delete');
         // PropertyType
-        Route::get('/category', [AdminCategoryController::class, 'index'])->name('admin.category.index');
-        Route::get('/category/show/{id}', [AdminCategoryController::class, 'show'])->name('admin.category.show');
-        Route::get('/category/create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
-        Route::post('/category/create', [AdminCategoryController::class, 'store'])->name('admin.category.store');
-        Route::get('/category/edit/{id}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
-        Route::post('/category/edit/{id}', [AdminCategoryController::class, 'update'])->name('admin.category.update');
-        Route::post('/category/destroy/{id}', [AdminCategoryController::class, 'destroy'])->name('admin.category.destroy');
+        Route::get('/property_types', [PropertyTypeController::class, 'index'])->name('admin.property_types.index');
+        Route::get('/property_types/show/{id}', [PropertyTypeController::class, 'show'])->name('admin.property_types.show');
+        Route::get('/property_types/create', [PropertyTypeController::class, 'create'])->name('admin.property_types.create');
+        Route::post('/property_types/create', [PropertyTypeController::class, 'store'])->name('admin.property_types.store');
+        Route::get('/property_types/edit/{id}', [PropertyTypeController::class, 'edit'])->name('admin.property_types.edit');
+        Route::post('/property_types/edit/{id}', [PropertyTypeController::class, 'update'])->name('admin.property_types.update');
+        Route::post('/property_types/destroy/{id}', [PropertyTypeController::class, 'destroy'])->name('admin.property_types.destroy');
+        //Property
+        Route::get('/property', [PropertyController::class, 'index'])->name('admin.property.index');
+        Route::get('/property/show/{id}', [PropertyController::class, 'show'])->name('admin.property.show');
+        Route::get('/property/create', [PropertyController::class, 'create'])->name('admin.property.create');
+        Route::post('/property/create', [PropertyController::class, 'store'])->name('admin.property.store');
+        Route::get('/property/edit/{id}', [PropertyController::class, 'edit'])->name('admin.property.edit');
+        Route::post('/property/edit/{id}', [PropertyController::class, 'update'])->name('admin.property.update');
+        Route::post('/property/destroy/{id}', [PropertyController::class, 'destroy'])->name('admin.property.destroy');
     });
 });

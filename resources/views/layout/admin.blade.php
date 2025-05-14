@@ -64,9 +64,9 @@
             <hr>
             <a href="/admin" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">Dashboard</a>
             <a href="/admin/users" class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}">Quản lý người dùng</a>
-            <a href="/admin/products" class="nav-link {{ request()->is('admin/products*') ? 'active' : '' }}">Quản lý sản phẩm</a>
             <a href="/admin/article" class="nav-link {{ request()->is('admin/article*') ? 'active' : '' }}">Quản lý bài viết</a>
-            <a href="/admin/category" class="nav-link {{ request()->is('admin/category*') ? 'active' : '' }}">Quản lý danh mục</a>
+            <a href="/admin/property_types" class="nav-link {{ request()->is('admin/property_types*') ? 'active' : '' }}">Quản lý loại bất động sản</a>
+            <a href="/admin/property" class="nav-link {{ request()->is('admin/property*') ? 'active' : '' }}">Quản lý bất động sản</a>
         </div>
 
         <div class="content">

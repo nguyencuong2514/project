@@ -7,20 +7,20 @@ use App\Models\Category;
 use App\Models\PropertyType;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class PropertyTypeController extends Controller
 {
     public function index()
     {
         // Hiển thị danh sách danh mục
         $categories = PropertyType::paginate(10);
-        return view('admin.category.index', compact('categories'));
+        return view('admin.property_types.index', compact('categories'));
     }
 
     public function create()
     {
         // Hiển thị form tạo danh mục mới
         $category = new PropertyType();
-        return view('admin.category.create', compact('category'));
+        return view('admin.property_types.create', compact('category'));
     }
 
     public function store(Request $request)
@@ -33,14 +33,14 @@ class CategoryController extends Controller
 
         PropertyType::create($request->all());
 
-        return redirect()->route('admin.category.index')->with('success', 'Tạo danh mục thành công!');
+        return redirect()->route('admin.property_types.index')->with('success', 'Tạo danh mục thành công!');
     }
 
     public function edit($id)
     {
         // Hiển thị form chỉnh sửa danh mục
         $category = PropertyType::findOrFail($id);
-        return view('admin.category.edit', compact('category'));
+        return view('admin.property_types.edit', compact('category'));
     }
 
     public function update(Request $request, $id)
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         $category = PropertyType::findOrFail($id);
         $category->update($request->all());
 
-        return redirect()->route('admin.category.index')->with('success', 'Cập nhật danh mục thành công!');
+        return redirect()->route('admin.property_types.index')->with('success', 'Cập nhật danh mục thành công!');
     }
 
     public function destroy($id)
@@ -62,6 +62,6 @@ class CategoryController extends Controller
         // Xử lý xóa danh mục
         $category = PropertyType::findOrFail($id)->delete();
 
-        return redirect()->route('admin.category.index')->with('success', 'Xóa danh mục thành công!');
+        return redirect()->route('admin.property_types.index')->with('success', 'Xóa danh mục thành công!');
     }
 }

@@ -11,6 +11,7 @@ class Property extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'price',
         'area',
         'facade',
@@ -22,7 +23,10 @@ class Property extends Model
         'image',
         'user_id',
         'property_type_id',
-        'location_id'
+        'location_id',
+        'status',
+        'view_count',
+        'category_id'
     ];
 
     public function user()
