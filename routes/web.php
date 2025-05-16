@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\PropertyImageController;
 use App\Http\Controllers\Admin\PropertyTypeController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
@@ -55,6 +57,13 @@ Route::middleware(['auth', 'auth.role:admin'])->group(function () {
         Route::get('/property/edit/{id}', [PropertyController::class, 'edit'])->name('admin.property.edit');
         Route::put('/property/edit/{id}', [PropertyController::class, 'update'])->name('admin.property.update');
         Route::post('/property/destroy/{id}', [PropertyController::class, 'destroy'])->name('admin.property.destroy');
+        //PropertyImage
+        Route::get('/property_image', [PropertyImageController::class, 'index'])->name('admin.property_image.index');
+        Route::get('/property_image/create', [PropertyImageController::class, 'create'])->name('admin.property_image.create');
+        Route::post('/property_image/create', [PropertyImageController::class, 'store'])->name('admin.property_image.store');
+        Route::get('/property_image/edit/{id}', [PropertyImageController::class, 'edit'])->name('admin.property_image.edit');
+        Route::post('/property_image/edit/{id}', [PropertyImageController::class, 'update'])->name('admin.property_image.update');
+        Route::delete('/property_image/destroy/{id}', [PropertyImageController::class, 'destroy'])->name('admin.property_image.destroy');
         //Location
         Route::get('/location', [LocationController::class, 'index'])->name('admin.location.index');
         Route::get('/location/create', [LocationController::class, 'create'])->name('admin.location.create');
@@ -63,5 +72,9 @@ Route::middleware(['auth', 'auth.role:admin'])->group(function () {
         Route::get('/location/edit/{id}', [LocationController::class, 'edit'])->name('admin.location.edit');
         Route::post('/location/edit/{id}', [LocationController::class, 'update'])->name('admin.location.update');
         Route::delete('/location/destroy/{id}', [LocationController::class, 'destroy'])->name('admin.location.destroy');
+        //User
+        Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
+        Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+        Route::post('/user/edit/{id}', [UserController::class, 'update'])->name('admin.user.update');
     });
 });
