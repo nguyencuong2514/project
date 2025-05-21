@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('client.index');
 });
 Route::get('/', [ClientController::class, 'index'])->name('client.index');
+//Client
+Route::get('/client/property', [ClientController::class, 'index'])->name('client.property.index');
+Route::get('/client/property/show/{id}', [ClientController::class, 'showproperty'])->name('client.property.show');
 Route::get('/client/article/', [ArticleController::class, 'index'])->name('client.article.index');
 Route::get('/client/article/show/{id}', [ClientController::class, 'showarticle'])->name('client.article.show');
 Route::get('/client/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
