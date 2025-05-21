@@ -1,6 +1,6 @@
 @extends('layout.layouts')
 
-@section('title', 'Chi tiết BĐS')
+@section('title', 'Chi tiết bài viết')
 
 @section('content')
 <div class="row">

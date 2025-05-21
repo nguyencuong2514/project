@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -11,18 +12,21 @@ class ClientController extends Controller
     {
         // Lấy tất cả bài viết từ database
         $article = Article::paginate(6); // Sử dụng paginate để phân trang nếu có nhiều bài viết
-
+        $property = Property::all(); // Lấy tất cả bất động sản từ database
         // Trả về view cùng với dữ liệu bài viết
-        return view('client.index', compact('article'));
+        return view('client.index', compact('article', 'property'));
     }
 
-    public function show($id)
+    public function showarticle($id)
     {
         $article = Article::find($id);
-
-        return view('client.show', compact('article'));
+        return view('client.article.show', compact('article'));
     }
-
+    public function showproperty($id)
+    {
+        $property = Property::find($id);
+        return view('client.property.show', compact('property'));
+    }
     // public function create()
     // {
     //     return view('client.create');

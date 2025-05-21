@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/', [ClientController::class, 'index'])->name('client.index');
 Route::get('/client/article/', [ArticleController::class, 'index'])->name('client.article.index');
-Route::get('/client/article/show/{id}', [ClientController::class, 'show'])->name('client.article.show');
+Route::get('/client/article/show/{id}', [ClientController::class, 'showarticle'])->name('client.article.show');
 Route::get('/client/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/client/register', [AuthController::class, 'register'])->name('register');
 Route::get('/client/login', [AuthController::class, 'showLoginForm'])->name('login');
